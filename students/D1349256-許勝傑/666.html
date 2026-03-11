@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>POPCAT CLASSIC</title>
+        <style>
+            body {
+                margin: 0;
+                font-family: sans-serif;
+                user-select: none;
+            }
+            .container {
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: #bdaa90;
+            }
+            .title {
+                width: 80%;
+                margin-top: 2em;
+                max-width: 600px;
+            }
+            .cat-img {
+                width: 100%;
+                text-align: center;
+                color: white;
+                font-size: 80px;
+                -webkit-text-stroke: 3px black;
+                flex: 1;
+                max-width: 800px;
+                cursor: pointer;
+            }
+            #p {
+                background-image: url('imgs/p.png');
+                background-position: bottom;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+             #p2 {
+                background-image: url('imgs/p.png');
+                background-position: bottom;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+            #op {
+                background-image: url('imgs/op.png');
+                background-position: bottom;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <img class="title" src="imgs/popcat.svg" alt="POPCAT CLASSIC" >
+            <div class="cat-img" id="p">0</div>
+        </div>
+        <div class="container" id="p2"></div>
+
+        <script>
+            let count = localStorage.getItem('popcatCount') ? Number(localStorage.getItem('popcatCount')) : 0;
+
+            function incrementCounter() {
+                count++;
+                console.log(count);
+                updateDisplay();
+                localStorage.setItem('popcatCount', count);
+            }
+
+            const catElement = document.getElementById('p');
+
+            function updateDisplay() {
+                catElement.textContent = count;
+            }updateDisplay();
+
+            catElement.addEventListener('click', incrementCounter);
+
+            catElement.addEventListener('mousedown', function() {
+                catElement.id = 'op';
+            });
+            catElement.addEventListener('mouseup', function() {
+                catElement.id = 'p';
+            });
+            catElement.addEventListener('mouseleave', function() {
+                catElement.id = 'p';
+            });
+        </script>
+    </body>
+</html>
